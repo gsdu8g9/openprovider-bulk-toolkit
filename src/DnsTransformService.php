@@ -7,7 +7,7 @@ class DnsTransformService
     /**
      * @var int
      */
-    protected static $perPage = 15;
+    protected static $perPage = 100;
 
     /**
      * @var OpenProviderService
