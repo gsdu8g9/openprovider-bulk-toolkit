@@ -2,7 +2,7 @@
 
 namespace OpenProviderTools;
 
-class DnsRecord
+class DnsRecord implements \JsonSerializable
 {
     const NAME_WILDCARD = '*';
 
@@ -93,5 +93,16 @@ class DnsRecord
     public function getTtl()
     {
         return $this->ttl;
+    }
+
+    function jsonSerialize()
+    {
+        return [
+            'type' => $this->type,
+            'name' => $this->name,
+            'value' => $this->value,
+            'priority' => $this->priority,
+            'ttl' => $this->ttl,
+        ];
     }
 }
