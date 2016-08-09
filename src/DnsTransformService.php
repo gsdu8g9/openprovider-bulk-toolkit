@@ -47,6 +47,10 @@ class DnsTransformService
 
         $newRecords = $transformer->transform($domain, $currentRecords);
 
+        if ($newRecords === $currentRecords) {
+            return;
+        }
+
         $this->openProviderService->writeDnsRecords($domain, $newRecords);
     }
 }

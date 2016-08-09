@@ -38,11 +38,11 @@ class OpenProviderService
         $request
             ->setCommand('searchDomainRequest')
             ->setAuth(['username' => $this->openProviderUsername, 'password' => $this->openProviderPassword])
-            ->setArgs(array(
+            ->setArgs([
                 'offset' => $start,
                 'limit' => $limit,
                 'status' => 'ACT',
-            ));
+            ]);
 
         $reply = $api->setDebug(0)->process($request);
         if ($reply->getFaultCode() > 0) {
@@ -69,10 +69,10 @@ class OpenProviderService
         $request
             ->setCommand('retrieveZoneDnsRequest')
             ->setAuth(['username' => $this->openProviderUsername, 'password' => $this->openProviderPassword])
-            ->setArgs(array(
+            ->setArgs([
                 'name' => $domain,
                 'withRecords' => 1
-            ));
+            ]);
 
         $reply = $api->setDebug(0)->process($request);
         if ($reply->getFaultCode() > 0) {
@@ -89,7 +89,7 @@ class OpenProviderService
 
         if ($excludeImmutableTypes) {
             $records = array_filter($records, function (DnsRecord $record) {
-                return !in_array($record->getType(), $this->getUnwritableRecords());
+                return !in_array($record->getType(), $this->getImmutableRecords());
             });
         }
 
@@ -143,7 +143,7 @@ class OpenProviderService
     public function writeDnsRecords($domain, array $records)
     {
         $immutableRecords = array_filter($records, function (DnsRecord $record) {
-            return in_array($record->getType(), $this->getUnwritableRecords());
+            return in_array($record->getType(), $this->getImmutableRecords());
         });
 
         if (count($immutableRecords) > 0) {
@@ -208,7 +208,7 @@ class OpenProviderService
     /**
      * @return string[]
      */
-    protected function getUnwritableRecords()
+    protected function getImmutableRecords()
     {
         return ['NS', 'SOA'];
     }
