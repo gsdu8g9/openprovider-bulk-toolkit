@@ -1,4 +1,6 @@
 {
+    "name": "jouwweb/openprovider-bulk-toolkit",
+    "version": 0.1,
     "require": {
         "roelvanduijnhoven/openprovider-php": "^0.3.0"
     },
