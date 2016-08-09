@@ -93,7 +93,7 @@ class OpenProviderService
             });
         }
 
-        return $records;
+        return array_values($records);
     }
 
     /**
