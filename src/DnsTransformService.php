@@ -47,6 +47,6 @@ class DnsTransformService
 
         $newRecords = $transformer->transform($domain, $currentRecords);
 
-//        $this->openProviderService->writeDnsRecords($domain, $newRecords);
+        $this->openProviderService->writeDnsRecords($domain, $newRecords);
     }
 }
