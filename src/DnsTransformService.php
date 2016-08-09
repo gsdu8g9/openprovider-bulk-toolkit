@@ -33,8 +33,9 @@ class DnsTransformService
             foreach ($domains as $domain) {
                 $this->transformDomain($domain, $transformer);
             }
+
             $page++;
-        } while (count($domains) > 0);
+        } while (count($domains) === self::$perPage);
     }
 
     /**
