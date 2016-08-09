@@ -1,0 +1,10 @@
+{
+    "require": {
+        "roelvanduijnhoven/openprovider-php": "^0.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenProviderTools\\": "src/"
+        }
+    }
+}
